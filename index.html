@@ -33,12 +33,14 @@
 				z-index: 2;
 				border-top-left-radius: 10px; /* Rounded top-left corner */
 				border-bottom-left-radius: 10px; /* Rounded bottom-left corner */
+				border: 1px solid #5e42a6;
 			}
 	
 			.role-column table {
 				width: 100%;
 				border-collapse: separate;
 				border-spacing: 0;
+				border: 1px solid #5e42a6;
 			}
 	
 			.role-column th {
@@ -49,6 +51,7 @@
 				background: linear-gradient(135deg, #6a0dad, #d5006f); /* Blueish purple to dark pink gradient */
 				border-radius: 8px;
 				height: 40px; /* Increased height of the header */
+				
 			}
 	
 			.role-column td {
@@ -62,6 +65,7 @@
 				position: relative;
 				font-weight: bold; /* Make the words bold */
 				font-size: 16px; /* Larger font size for the role column text */
+				
 			}
 	
 			.circle-icon {
@@ -81,6 +85,7 @@
 				overflow-x: auto;
 				background-color: #5e42a6;
 				border-radius: 8px; /* Apply border-radius to the table */
+				
 			}
 	
 			.table-data table {
@@ -90,6 +95,7 @@
 				background-color: #5e42a6;
 				box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 				border-radius: 8px; /* Added border-radius here */
+				
 			}
 	
 			.table-data thead th {
@@ -105,10 +111,12 @@
 				border-top-left-radius: 8px;
 				border-top-right-radius: 8px;
 				height: 40px; /* Set header height to match role column header */
+				
 			}
 	
 			.table-data thead th:not(:last-child) {
-				border-right: 1px solid #5e42a6;
+				border-right: 1px solid black;
+				
 			}
 	
 			.table-data tbody tr {
@@ -117,11 +125,11 @@
 			}
 	
 			.table-data tbody tr:nth-child(odd) {
-				background-color: black;
+				background-color: #493382;
 			}
 	
 			.table-data tbody tr:nth-child(even) {
-				background-color: #e0f7fa;
+				background-color: #493382;
 			}
 	
 			th, td {
@@ -159,8 +167,8 @@
 						<ul>
 							<li><a href="#intro">Welcome</a></li>
 							<li><a href="#one">Career Path Visualizer</a></li>
-							<li><a href="#two">Positions</a></li>
-							<li><a href="#three">playground environment</a></li>
+							<li><a href="#two">Position Areas</a></li>
+							<li><a href="#three">Specific Positions</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -173,7 +181,7 @@
 					<section id="intro" class="wrapper style1 fullscreen fade-up">
 						<div class="inner">
 							<h1>Welcome</h1>
-							<p>Use the below tool to help identify potential position advancements at your company and the skills necessary to achieve them.</p>
+							<p>Use the below tool to help identify potential position advancements at Hydro Aluminum and the skills necessary to achieve them.</p>
 							<ul class="actions">
 								<li><a href="#one" class="button scrolly">Learn more</a></li>
 							</ul>
@@ -181,7 +189,9 @@
 					</section>
 					
 				<!-- One -->
-					<section id="one" class="wrapper style2 spotlights">
+					<section id="one" class="wrapper style1 spotlights">
+						<div class = "inner">
+						<h2>Career Tool</h2>
 						<div class="container">
 							<div class="role-column">
 								<table>
@@ -273,14 +283,16 @@
 								</table>
 							</div>
 						</div>
-						
+						</div>
 					</section> 
 
 				<!-- Two -->
 					<section id="two" class="wrapper style1 fade-up">
 						<div class="inner">
-							<h2>Position Overview</h2>
-							<p>Please see the following pages for additional role information</p>
+							<h2>Focus Areas</h2>
+							<p>Please see the following pages for additional role information 
+								grouped by position focus
+							</p>
 							
 							<div class="features">
 								
@@ -336,7 +348,7 @@
 								</section>
 								<section>
 									<span class="icon solid major fab fa-phone"></span>
-									<h3>Material Handler Front Office</h3>
+									<h3>Front Office</h3>
 									<p>Coordinate administrative tasks, customer interactions, and operational support to ensure efficient communication, scheduling, and documentation in a fast-paced aluminum processing environment.</p>
 									<ul class="actions">
 										<li><a href="pages/front_office.html" class="button">Receiving Specialist</a></li>
@@ -359,7 +371,8 @@
 				<!-- Three -->
 					<section id="three" class="wrapper style1 fade-up">
 						<div class="inner">
-							<h2>test new element implementations here preferably</h2>
+							<h2>Specific Positions</h2>
+							<p>Please see the following links for specific position information</p>
 							<canvas id="circleCanvas" width="1075" height="650"></canvas>
 
     <script>
