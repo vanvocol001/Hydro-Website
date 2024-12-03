@@ -416,8 +416,26 @@
             { start: '#d5006d', end: 'pink' }
         ];
 
+		const urls = [
+			"pages/casting.html#one",
+			"pages/casting.html#two",
+			"pages/charging.html#one",
+			"pages/charging.html#two",
+			"pages/saw.html#one",
+			"pages/saw.html#two",
+			"pages/materialHandling.html#two",
+			"pages/materialHandling.html#one",
+			"pages/materialProcessing.html#two",
+			"pages/materialProcessing.html#one",
+			"pages/front_office.html#one",
+			"pages/senior_caster.html#one",
+			"pages/leadership.html#one",
+			"pages/leadership.html#two",
+			"pages/leadership.html#three"
+		]
+
         class Circle {
-            constructor(x, y, radius, name, colorGradient, outlineColor) {
+            constructor(x, y, radius, name, colorGradient, outlineColor, url) {
                 this.x = x;
                 this.y = y;
                 this.radius = radius;
@@ -426,6 +444,7 @@
                 this.colorGradient = colorGradient;
                 this.name = name;
                 this.outlineColor = outlineColor; // Set outline color
+				this.url = url;
             }
 
             createGradient() {
@@ -480,6 +499,11 @@
                 this.colorGradient.start = hovered ? this.darkerColor(this.colorGradient.start) : this.colorGradient.start;
                 this.colorGradient.end = hovered ? this.darkerColor(this.colorGradient.end) : this.colorGradient.end;
             }
+
+			isClicked(mouseX,mouseY) {
+				const dist = Math.hypot(this.x - mouseX, this.y - mouseY);
+				return dist <= this.radius;
+			}
         }
 
         function createCircles() {
@@ -496,6 +520,7 @@
                     const index = row * cols + col;
                     const name = names[index];
                     const colorGradient = colorGradients[index];
+					const url = urls[index];
 
                     // Determine outline color based on the index
                     let outlineColor;
@@ -509,7 +534,7 @@
                         outlineColor = '#d5006d';
                     }
 
-                    circles.push(new Circle(x, y, radius, name, colorGradient, outlineColor));
+                    circles.push(new Circle(x, y, radius, name, colorGradient, outlineColor, url));
                 }
             }
         }
@@ -535,6 +560,18 @@
                 circle.setHover(dist < circle.targetRadius);
             });
         });
+
+		canvas.addEventListener('click', (e) => {
+			const rect = canvas.getBoundingClientRect();
+			const mouseX = e.clientX - rect.left;
+			const mouseY = e.clientY - rect.top;
+
+			circles.forEach(circle => {
+				if (circle.isClicked(mouseX, mouseY)) {
+					window.location.href = circle.url; 
+				}
+			});
+		});
 
         animate();
     </script>
