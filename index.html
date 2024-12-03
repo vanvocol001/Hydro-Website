@@ -11,17 +11,143 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<style type="text/css">
-			table { display: block; overflow-x: scroll; display:block; height: 100%; width: 100%;}
-			th {border: 10px solid black; background-color: grey; width: 5%; font-size: 1px; }
-			td {border: 10px solid black; background-color: grey; font-size: 10px;}
+		<style>
 			
-			canvas {
-            border-radius: 15px;
-            border: none; /* Clear border */
-            background: #5e31a0;
-        }
-			
+	
+			.container {
+				display: flex;
+				overflow-x: auto;
+				max-height: 800px;
+				margin-top: 20px;
+				border-radius: 10px; /* Apply border-radius to the whole container */
+				overflow: hidden; /* Ensure the rounded corners are visible */
+			}
+	
+			.role-column {
+				width: 350px; /* Increased width of the Role column */
+				background-color: #5e42a6;
+				box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+				position: sticky;
+				left: 0;
+				top: 0;
+				z-index: 2;
+				border-top-left-radius: 10px; /* Rounded top-left corner */
+				border-bottom-left-radius: 10px; /* Rounded bottom-left corner */
+			}
+	
+			.role-column table {
+				width: 100%;
+				border-collapse: separate;
+				border-spacing: 0;
+			}
+	
+			.role-column th {
+				padding: 16px;
+				text-align: center;
+				font-size: 20px; /* Set back to previous size */
+				color: white;
+				background: linear-gradient(135deg, #6a0dad, #d5006f); /* Blueish purple to dark pink gradient */
+				border-radius: 8px;
+				height: 40px; /* Increased height of the header */
+			}
+	
+			.role-column td {
+				padding: 20px 30px 20px 8px; /* Increased padding for larger row height */
+				background-color: #f2f2f2;
+				color: black;
+				border-radius: 8px;
+				text-align: center;
+				vertical-align: middle;
+				height: 40px; /* Increased height of the row */
+				position: relative;
+				font-weight: bold; /* Make the words bold */
+				font-size: 16px; /* Larger font size for the role column text */
+			}
+	
+			.circle-icon {
+				width: 12px;
+				height: 12px;
+				background: linear-gradient(45deg, lightblue, #d5006f); /* Gradient from light blue to pink */
+				border-radius: 50%;
+				border: 1px solid black; /* Smaller black border */
+				position: absolute;
+				right: 12px; /* Moved the circle further to the right */
+				top: 50%;
+				transform: translateY(-50%);
+			}
+	
+			.table-data {
+				flex-grow: 1;
+				overflow-x: auto;
+				background-color: #5e42a6;
+				border-radius: 8px; /* Apply border-radius to the table */
+			}
+	
+			.table-data table {
+				width: 100%;
+				border-collapse: separate;
+				border-spacing: 0;
+				background-color: #5e42a6;
+				box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+				border-radius: 8px; /* Added border-radius here */
+			}
+	
+			.table-data thead th {
+				padding: 16px; /* Match padding for equal height */
+				text-align: center;
+				font-size: 20px; /* Larger font size for table header */
+				color: white;
+				background: linear-gradient(135deg, #6a0dad, #d5006f); /* Blueish purple to dark pink gradient */
+				position: sticky;
+				top: 0;
+				z-index: 1;
+				white-space: nowrap;
+				border-top-left-radius: 8px;
+				border-top-right-radius: 8px;
+				height: 40px; /* Set header height to match role column header */
+			}
+	
+			.table-data thead th:not(:last-child) {
+				border-right: 1px solid #5e42a6;
+			}
+	
+			.table-data tbody tr {
+				border-bottom: 1px solid #ccc;
+				height: 40px; /* Increased row height */
+			}
+	
+			.table-data tbody tr:nth-child(odd) {
+				background-color: black;
+			}
+	
+			.table-data tbody tr:nth-child(even) {
+				background-color: #e0f7fa;
+			}
+	
+			th, td {
+				padding: 24px; /* Increased padding for larger font size */
+				text-align: center;
+				font-size: 14px; /* Larger font size for table content */
+				border-radius: 8px;
+				height: 40px; /* Ensure row height matches header height */
+				vertical-align: middle;
+			}
+	
+			.table-data tbody td {
+				border-right: 1px solid black;
+			}
+	
+			.table-data tbody td:last-child {
+				border-right: none;
+			}
+	
+			@media screen and (max-width: 768px) {
+				th, td {
+					font-size: 12px; /* Smaller font size for mobile */
+					padding: 10px;
+					height: auto; /* Adjust height for mobile devices */
+				}
+			}
 		</style>
 	</head>
 	<body class="is-preload">
@@ -56,574 +182,98 @@
 					
 				<!-- One -->
 					<section id="one" class="wrapper style2 spotlights">
-						
-						<div id="csv-output">
-							<!-- The CSV content will be dynamically inserted here -->
-						</div>
-						<!-- <p>The full implementation of the tool would be within this section. I just wanted to include this beautiful placeholder
-							table with the spreadsheet data to make sure the data itself could be properly imported. This section would be the bulk of 
-							what needs to be done with the remaining time.
-						</p>
-						
-						<section>
-							<div style="height: 1000px; overflow: auto; margin-left: auto;">
-							<table>
-								<thead>
-									<tr>
-										<th>ROLE</th>
-										<th>TIME MANAGEMENT</th>
-										<th>RESEARCH</th>
-										<th>PROBLEM SOLVING</th>
-										<th>DIAGNOSTIC INFORMATION GATHERING</th>
-										<th>CONTINUOUS IMPROVEMENT</th>
-										<th>RELIABILITY</th>
-										<th>CRITICAL THINKING</th>
-										<th>RESULTS ORIENTED</th>
-										<th>TEAMWORK</th>
-										<th>DATA ANALYSIS</th>
-										<th>WILLINGNESS TO LEARN</th>
-										<th>COMMUNICATION</th>
-										<th>DECISIVENESS</th>
-										<th>PROBLEM ANALYSIS</th>
-										<th>EMBRACING CHANGE</th>
-										<th>PREVENTATIVE AND FIRST LINE REACTIVE MAINTENANCE ON MACHINES</th>
-										<th>MACHINE OPERATION</th>
-										<th>HAND TOOL PROFICIENCY</th>
-										<th>GOAL ORIENTATION</th>
-										<th>SELF AWARENESS</th>
-										<th>COMPUTER SKILLS</th>
-										<th>KNOWLEDGE OF BASIC MOBILE EQUIPMENT INSPECTION</th>
-										<th>TROUBLESHOOTING CAPABILITIES</th>
-										<th>BASIC MATH SKILLS</th>
-										<th>BASIC Preventative maintenance on mobile equipment</th>
-										<th>PAYLOADER EQUIPMENT CERTIFICATION</th>
-										<th>TELESCOPIC LIFT CERTIFICATION</th>
-										<th>FORKLIFT EQUIPMENT CERTIFICATION</th>
-										<th>LOADING/UNLOADING CAPABILITY</th>
-										<th>BASIC USE OF MOBILE EQUIPMENT ATTACHMENTS</th>
-										<th>OPERATE CLASS 7 &amp; 8 TRACTORS</th>
-										<th>ABILITY TO MANEUVER TRAILERS ON PLANT SITE</th>
-										<th>SHIPPING/RECEIVING BACKUP</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Production Operator: Casting</td>
-							
-										<td>Can manage own time</td>
-										<td>Can locate and gather basic information</td>
-										<td>Can solve routine problems</td>
-										<td>Can gather basic information</td>
-										<td>Can identify basic issues</td>
-										<td>Can be counted on to meet commitments</td>
-										<td>Can identify simple problems. Demonstrates a willingness to learn and apply analytical skills</td>
-										<td>Can complete basic tasks</td>
-										<td>Can effectively work in a team</td>
-										<td>Can collect basic data</td>
-										<td>Open to learning new things</td>
-										<td>Can communicate effectively</td>
-										<td>Can make routine decisions. Seeks guidance and support from team members and supervisors when faced with more complex decisions</td>
-										<td>Can understand problems</td>
-										<td>Can cope with changes</td>
-										<td>Can perform routine checks such as lubricating/moving parts/cleaning equipment/tightening loose bolts</td>
-										<td>Basic Machine Operation proficiency</td>
-										<td>Basic use of hand tools</td>
-										<td>Can complete and achieve basic goals</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-									</tr>
-									<tr>
-										<td>Production Operator: Casting II</td>
-							
-										<td>Can manage own/other&#39;s time</td>
-										<td>Can locate and gather basic information</td>
-										<td>Can solve non-routine problems</td>
-										<td>Can gather and organize basic information</td>
-										<td>Can identify/implement basic improvements</td>
-										<td>Can be counted on to meet commitments</td>
-										<td>Can identify and analyze basic problems. Participates in problem-solving tasks involving focusing on understanding and interpreting available information</td>
-										<td>Can complete intermediate tasks</td>
-										<td>Can lead a team</td>
-										<td>Can collect/organize/interpret basic data</td>
-										<td>Seeks out learning opportunities. Seeks out new information/ideas/resources to enhance personal growth</td>
-										<td>Can communicate persuasively</td>
-										<td>Can make moderate decisions. Considers available information/potential consequences/organizational goals when making decisions</td>
-										<td>Can understand problems</td>
-										<td>Can cope with changes</td>
-										<td>Can perform routine checks such as lubricating/moving parts/cleaning equipment/tightening loose bolts</td>
-										<td>Basic Machine Operation proficiency</td>
-										<td>Basic use of hand tools</td>
-										<td>Can complete and achieve basic goals</td>
-										<td>Recognizes and understands personal emotions/strengths/weaknesses and their impact on interactions with others</td>
-										<td>Basic Computer skills: data entry/using a computer with MS Word or Excel</td>
-										<td>YES</td>
-										<td>Intermediate Troubleshooting</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-									</tr>
-									<tr>
-										<td>Production Operator: Charging</td>
-							
-										<td>Can manage own/other&#39;s time</td>
-										<td>Can locate and gather basic information</td>
-										<td>Can solve non-routine problems</td>
-										<td>Can gather basic information</td>
-										<td>Can identify/implement basic improvements</td>
-										<td>Can be counted on to meet commitments under pressure</td>
-										<td>Can identify and analyze basic problems. Participates in problem-solving tasks involving focusing on understanding and interpreting available information</td>
-										<td>Can complete basic tasks</td>
-										<td>Can effectively work in a team</td>
-										<td>Can collect/organize/interpret basic data</td>
-										<td>Seeks out learning opportunities. Seeks out new information/ideas/resources to enhance personal growth</td>
-										<td>Can communicate effectively</td>
-										<td>Can make moderate decisions. Considers available information/potential consequences/organizational goals when making decisions</td>
-										<td>Can understand problems</td>
-										<td>Can cope with changes</td>
-										<td>Can perform routine checks such as lubricating/moving parts/cleaning equipment/tightening loose bolts</td>
-										<td>Basic Machine Operation proficiency</td>
-										<td>Basic use of hand tools</td>
-										<td>Can complete and achieve basic goals</td>
-										<td>Recognizes and understands personal emotions/strengths/weaknesses and their impact on interactions with others</td>
-										<td>Basic Computer skills: data entry/using a computer with MS Word or Excel</td>
-										<td>YES</td>
-										<td>No Requirement</td>
-										<td>Basic math: include measuring dimensions and quantities accurately. Operators need to read and use measuring tools and calculate percentages for quality control/defect rates/efficiency metrics as well as add/subtract/multiply/divide fractions/decimals</td>
-										<td>YES</td>
-										<td>YES</td>
-										<td>YES</td>
-										<td>YES</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-									</tr>
-									<tr>
-										<td>Production Operator Charging II</td>
-							
-										<td>Can manage own/other&#39;s time</td>
-										<td>Can locate and gather basic information</td>
-										<td>Can solve non-routine problems</td>
-										<td>Can gather basic information</td>
-										<td>Can identify/implement basic improvements</td>
-										<td>Can be counted on to meet commitments under pressure</td>
-										<td>Can identify simple problems. Demonstrates a willingness to learn and apply analytical skills</td>
-										<td>Can complete intermediate tasks</td>
-										<td>Can effectively work in a team</td>
-										<td>Can collect/organize/interpret basic data</td>
-										<td>Seeks out learning opportunities. Seeks out new information/ideas/resources to enhance personal growth</td>
-										<td>Can communicate effectively</td>
-										<td>Can make moderate decisions. Considers available information/potential consequences/organizational goals when making decisions</td>
-										<td>Can understand problems</td>
-										<td>Can cope with changes</td>
-										<td>Can perform routine checks such as lubricating/moving parts/cleaning equipment/tightening loose bolts</td>
-										<td>Basic Machine Operation proficiency</td>
-										<td>Basic use of hand tools</td>
-										<td>Can complete and achieve basic goals</td>
-										<td>Recognizes and understands personal emotions/strengths/weaknesses and their impact on interactions with others</td>
-										<td>Basic Computer skills: data entry/using a computer with MS Word or Excel</td>
-										<td>YES</td>
-										<td>No Requirement</td>
-										<td>Basic math: include measuring dimensions and quantities accurately. Operators need to read and use measuring tools and calculate percentages for quality control/defect rates/efficiency metrics as well as add/subtract/multiply/divide fractions/decimals</td>
-										<td>YES</td>
-										<td>YES</td>
-										<td>YES</td>
-										<td>YES</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-									</tr>
-									<tr>
-										<td>Production Operator: Saw</td>
-							
-										<td>Can manage own time</td>
-										<td>Can locate and gather basic information</td>
-										<td>Can solve non-routine problems</td>
-										<td>Can gather basic information</td>
-										<td>Can identify basic issues</td>
-										<td>Can be counted on to meet commitments</td>
-										<td>Can identify and analyze basic problems. Participates in problem-solving tasks involving focusing on understanding and interpreting available information</td>
-										<td>Can complete basic tasks</td>
-										<td>Can effectively work in a team/independently</td>
-										<td>Can collect/organize/interpret basic data</td>
-										<td>Seeks out learning opportunities. Seeks out new information/ideas/resources to enhance personal growth</td>
-										<td>Can communicate effectively</td>
-										<td>Can make moderate decisions. Considers available information/potential consequences/organizational goals when making decisions</td>
-										<td>Can understand problems</td>
-										<td>Can cope with changes</td>
-										<td>Can perform routine checks such as lubricating/moving parts/cleaning equipment/tightening loose bolts</td>
-										<td>Intermediate Machine Operation proficiency</td>
-										<td>Basic use of hand tools</td>
-										<td>Can complete and achieve basic goals</td>
-										<td>Recognizes and understands personal emotions/strengths/weaknesses and their impact on interactions with others</td>
-										<td>Intermediate computer skills: ability to navigate MS Office/ APICS &amp; SAP</td>
-										<td>YES</td>
-										<td>Intermediate Troubleshooting</td>
-										<td>Basic math: include measuring dimensions and quantities accurately. Operators need to read and use measuring tools and calculate percentages for quality control/defect rates/efficiency metrics as well as add/subtract/multiply/divide fractions/decimals</td>
-										<td>YES</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>YES</td>
-										<td>YES</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-									</tr>
-									<tr>
-										<td>Production Operator: Saw II</td>
-							
-										<td>Can manage own time</td>
-										<td>Can locate and gather basic information</td>
-										<td>Can solve non-routine problems</td>
-										<td>Can gather basic information</td>
-										<td>Can identify basic issues</td>
-										<td>Can be counted on to meet commitments</td>
-										<td>Can identify and analyze basic problems. Participates in problem-solving tasks involving focusing on understanding and interpreting available information</td>
-										<td>Can complete basic tasks</td>
-										<td>Can effectively work in a team/independently</td>
-										<td>Can collect/organize/interpret basic data</td>
-										<td>Seeks out learning opportunities. Seeks out new information/ideas/resources to enhance personal growth</td>
-										<td>Can communicate effectively</td>
-										<td>Can make moderate decisions. Considers available information/potential consequences/organizational goals when making decisions</td>
-										<td>Can understand problems</td>
-										<td>Can cope with changes</td>
-										<td>Can perform routine checks such as lubricating/moving parts/cleaning equipment/tightening loose bolts</td>
-										<td>Intermediate Machine Operation proficiency</td>
-										<td>Basic use of hand tools</td>
-										<td>Can complete and achieve basic goals</td>
-										<td>Recognizes and understands personal emotions/strengths/weaknesses and their impact on interactions with others</td>
-										<td>Intermediate computer skills: ability to navigate MS Office/ APICS &amp; SAP</td>
-										<td>YES</td>
-										<td>Intermediate Troubleshooting</td>
-										<td>Basic math: include measuring dimensions and quantities accurately. Operators need to read and use measuring tools and calculate percentages for quality control/defect rates/efficiency metrics as well as add/subtract/multiply/divide fractions/decimals</td>
-										<td>YES</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>YES</td>
-										<td>YES</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-									</tr>
-									<tr>
-										<td>Material Handler Level 1 Unloading</td>
-							
-										<td>Can manage own time</td>
-										<td>Can locate and gather basic information</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>Can identify/implement basic improvements</td>
-										<td>Can be counted on to meet commitments under pressure</td>
-										<td>Can identify and analyze basic problems. Participates in problem-solving tasks involving focusing on understanding and interpreting available information</td>
-										<td>Can complete basic tasks</td>
-										<td>Can effectively work in a team</td>
-										<td>Can collect/organize/interpret basic data</td>
-										<td>Seeks out learning opportunities. Seeks out new information/ideas/resources to enhance personal growth</td>
-										<td>Can communicate effectively</td>
-										<td>Can make moderate decisions. Considers available information/potential consequences/organizational goals when making decisions</td>
-										<td>Can understand problems</td>
-										<td>Can cope with changes</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>Basic use of hand tools</td>
-										<td>Can complete and achieve basic goals</td>
-										<td>Recognizes and understands personal emotions/strengths/weaknesses and their impact on interactions with others</td>
-										<td>Intermediate computer skills: ability to navigate MS Office/ APICS &amp; SAP</td>
-										<td>YES</td>
-										<td>No Requirement</td>
-										<td>Basic math: include measuring dimensions and quantities accurately. Operators need to read and use measuring tools and calculate percentages for quality control/defect rates/efficiency metrics as well as add/subtract/multiply/divide fractions/decimals</td>
-										<td>YES</td>
-										<td>YES</td>
-										<td>YES</td>
-										<td>YES</td>
-										<td>No Requirement</td>
-										<td>YES</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-									</tr>
-									<tr>
-										<td>Material Handler Level 2 Loading</td>
-							
-										<td>Can manage own time</td>
-										<td>Can locate and gather basic information</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>Can identify/implement basic improvements</td>
-										<td>Can be counted on to meet commitments under pressure</td>
-										<td>Can identify and analyze basic problems. Participates in problem-solving tasks involving focusing on understanding and interpreting available information</td>
-										<td>Can complete basic tasks</td>
-										<td>Can effectively work in a team</td>
-										<td>Can collect/organize/interpret basic data</td>
-										<td>Seeks out learning opportunities. Seeks out new information/ideas/resources to enhance personal growth</td>
-										<td>Can communicate effectively</td>
-										<td>Can make moderate decisions. Considers available information/potential consequences/organizational goals when making decisions</td>
-										<td>Can understand problems</td>
-										<td>Can cope with changes</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>Basic use of hand tools</td>
-										<td>Can complete and achieve basic goals</td>
-										<td>Recognizes and understands personal emotions/strengths/weaknesses and their impact on interactions with others</td>
-										<td>Intermediate computer skills: ability to navigate MS Office/ APICS &amp; SAP</td>
-										<td>YES</td>
-										<td>No Requirement</td>
-										<td>Basic math: include measuring dimensions and quantities accurately. Operators need to read and use measuring tools and calculate percentages for quality control/defect rates/efficiency metrics as well as add/subtract/multiply/divide fractions/decimals</td>
-										<td>YES</td>
-										<td>YES</td>
-										<td>YES</td>
-										<td>YES</td>
-										<td>No Requirement</td>
-										<td>YES</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-									</tr>
-									<tr>
-										<td>Material Handler Tipper</td>
-							
-										<td>Can manage own time</td>
-										<td>Can locate and gather basic information</td>
-										<td>No Requirement</td>
-										<td>Can gather basic information</td>
-										<td>Can identify/implement basic improvements</td>
-										<td>Can be counted on to meet commitments under pressure</td>
-										<td>Can identify and analyze basic problems. Participates in problem-solving tasks involving focusing on understanding and interpreting available information</td>
-										<td>Can complete basic tasks</td>
-										<td>Can effectively work in a team</td>
-										<td>Can collect/organize/interpret basic data</td>
-										<td>Seeks out learning opportunities. Seeks out new information/ideas/resources to enhance personal growth</td>
-										<td>Can communicate effectively</td>
-										<td>Can make moderate decisions. Considers available information/potential consequences/organizational goals when making decisions</td>
-										<td>Can understand problems</td>
-										<td>Can cope with changes</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>Basic use of hand tools</td>
-										<td>Can complete and achieve basic goals</td>
-										<td>Recognizes and understands personal emotions/strengths/weaknesses and their impact on interactions with others</td>
-										<td>Intermediate computer skills: ability to navigate MS Office/ APICS &amp; SAP</td>
-										<td>YES</td>
-										<td>No Requirement</td>
-										<td>Basic math: include measuring dimensions and quantities accurately. Operators need to read and use measuring tools and calculate percentages for quality control/defect rates/efficiency metrics as well as add/subtract/multiply/divide fractions/decimals</td>
-										<td>YES</td>
-										<td>YES</td>
-										<td>YES</td>
-										<td>YES</td>
-										<td>No Requirement</td>
-										<td>YES</td>
-										<td>YES</td>
-										<td>YES</td>
-										<td>No Requirement</td>
-									</tr>
-									<tr>
-										<td>Material Handler Melter</td>
-							
-										<td>Can manage own time</td>
-										<td>Can locate and gather basic information</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>Can identify/implement basic improvements</td>
-										<td>Can be counted on to meet commitments under pressure</td>
-										<td>Can identify and analyze basic problems. Participates in problem-solving tasks involving focusing on understanding and interpreting available information</td>
-										<td>Can complete basic tasks</td>
-										<td>Can effectively work in a team</td>
-										<td>Can collect/organize/interpret basic data</td>
-										<td>Seeks out learning opportunities. Seeks out new information/ideas/resources to enhance personal growth</td>
-										<td>Can communicate effectively</td>
-										<td>Can make moderate decisions. Considers available information/potential consequences/organizational goals when making decisions</td>
-										<td>Can understand problems</td>
-										<td>Can cope with changes</td>
-										<td>No Requirement</td>
-										<td>Intermediate Machine Operation proficiency</td>
-										<td>Basic use of hand tools</td>
-										<td>Can complete and achieve basic goals</td>
-										<td>Recognizes and understands personal emotions/strengths/weaknesses and their impact on interactions with others</td>
-										<td>Intermediate computer skills: ability to navigate MS Office/ APICS &amp; SAP</td>
-										<td>YES</td>
-										<td>No Requirement</td>
-										<td>Basic math: include measuring dimensions and quantities accurately. Operators need to read and use measuring tools and calculate percentages for quality control/defect rates/efficiency metrics as well as add/subtract/multiply/divide fractions/decimals</td>
-										<td>YES</td>
-										<td>YES</td>
-										<td>No Requirement</td>
-										<td>YES</td>
-										<td>No Requirement</td>
-										<td>YES</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-									</tr>
-									<tr>
-										<td>Material Handler Front Office</td>
-							
-										<td>Can manage own/other&#39;s time</td>
-										<td>Can locate and gather basic information</td>
-										<td>Can solve non-routine problems</td>
-										<td>Can gather basic information</td>
-										<td>Can identify/implement basic improvements</td>
-										<td>Can be counted on to meet commitments under pressure</td>
-										<td>Can identify and analyze basic problems. Participates in problem-solving tasks involving focusing on understanding and interpreting available information</td>
-										<td>Can complete basic tasks</td>
-										<td>Can effectively work in a team</td>
-										<td>Can collect/organize/interpret basic data</td>
-										<td>Seeks out learning opportunities. Seeks out new information/ideas/resources to enhance personal growth</td>
-										<td>Can communicate persuasively</td>
-										<td>Can make routine decisions. Seeks guidance/support from team members/supervisors when faced with more complex decisions</td>
-										<td>Can understand problems</td>
-										<td>Can cope with changes</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>Can complete and achieve basic goals</td>
-										<td>Recognizes and understands personal emotions/strengths/weaknesses and their impact on interactions with others</td>
-										<td>Intermediate computer skills: ability to navigate MS Office/ APICS &amp; SAP</td>
-										<td>YES</td>
-										<td>No Requirement</td>
-										<td>Basic math: include measuring dimensions and quantities accurately. Operators need to read and use measuring tools and calculate percentages for quality control/defect rates/efficiency metrics as well as add/subtract/multiply/divide fractions/decimals</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>YES</td>
-									</tr>
-									<tr>
-										<td>Production Operator: Senior Caster</td>
-							
-										<td>Can manage own/others&#39;/team&#39;s time</td>
-										<td>Can locate/gather/critically-
-							evaluate information</td>
-							
-										<td>Can facilitate the solving of complex problems</td>
-										<td>Can gather/organize/interpret information</td>
-										<td>Can identify/implement/measure improvements</td>
-										<td>Can be counted on to meet commitments consistently</td>
-										<td>Can identify and analyze basic problems. Participates in problem-solving tasks involving focusing on understanding and interpreting available information</td>
-										<td>Can complete, achieve and exceed goals</td>
-										<td>Can effectively work in a team/independently</td>
-										<td>No Requirement</td>
-										<td>Continuously learns and develops</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>Can perform routine checks, such as lubricating, moving parts, cleaning equipment, and tightening loose bolts</td>
-										<td>Intermediate Machine Operation proficiency</td>
-										<td>Basic use of hand tools</td>
-										<td>Can complete, achieve and exceed goals</td>
-										<td>Recognizes and understands personal emotions/strengths/weaknesses and their impact on interactions with others</td>
-										<td>Intermediate computer skills: ability to navigate MS Office/ APICS &amp; SAP</td>
-										<td>YES</td>
-										<td>Intermediate Troubleshooting</td>
-										<td>Basic math: include measuring dimensions and quantities accurately. Operators need to read and use measuring tools and calculate percentages for quality control/defect rates/efficiency metrics as well as add/subtract/multiply/divide fractions/decimals</td>
-										<td>YES</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-										<td>No Requirement</td>
-									</tr>
-								</tbody>
-							</table>
+						<div class="container">
+							<div class="role-column">
+								<table>
+									<thead>
+										<tr>
+											<th>Role</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Production Operator: Casting <div class="circle-icon"></div></td>
+										</tr>
+										<tr>
+											<td>Production Operator: Casting 2 <div class="circle-icon"></div></td>
+										</tr>
+										<tr>
+											<td>Production Operator: Casting 3 <div class="circle-icon"></div></td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
-							<script>
-								// Function to convert CSV string to an HTML table
-								function generateTable() {
-									// const rows = csvData.split('\n');
-									// let table = '<table><thead><tr>';
-										
-									// // Add table headers from the first row of the CSV
-									// const headers = rows[0].split(',');
-									// headers.forEach(header => {
-									// 	table += `<th>${header}</th>`;
-									// });
-									// table += '</tr></thead><tbody>';
-										
-									// // Add table rows from the remaining rows of the CSV
-									// for (let i = 1; i < rows.length; i++) {
-									// 	const cells = rows[i].split(',');
-									// 	if (cells.length > 1) {
-									// 		table += '<tr>';
-									// 		cells.forEach(cell => {
-									// 			table += `<td>${cell}</td>`;
-									// 		});
-									// 		table += '</tr>';
-									// 	}
-									// }
-								
-									// table += '</tbody></table>';
-									tbl = document.createElement("table");
-									tblBody = document.createElement("tbody");
-
-									//rows = csvData.split('\n');
-
-									for (let i = 0; i < 2; i++){
-										const row = document.createElement("tr");
-
-										for (let j = 0; j < 2; j++){
-											const cell = document.createElement("td");
-											const cellText = document.createTextNode('cell in row ${i}, column ${j}');
-											cell.appendChild(cellText);
-											row.appendChild(cell);
-										}
-										tblBody.appendChild(row);
-									}
-									tbl.appendChild(tblBody);
-									document.body.appendChild(tbl);
-									tbl.setAttribute("border","10","background-color","#Blue");
-									
-									// return table;
-								}
-							
-								// Fetch the CSV file and display its content
-								async function loadCSV() {
-									try {
-										response = await fetch('data/CareerPathways(UPDATED).csv');
-										csvData = await response.text();
-										csvTable = csvToTable(csvData);
-										document.getElementById('csv-output').innerHTML = csvTable;
-									} catch (error) {
-										console.error('Error loading the CSV file:', error);
-										document.getElementById('csv-output').innerHTML = 'Failed to load CSV data.';
-									}
-								}
-							
-								// Load the CSV data when the page loads
-								// window.onload = generateTable();
-								
-							</script>
-							
-							</section> -->
+				
+							<div class="table-data">
+								<table>
+									<thead>
+										<tr>
+											<th>Time Management</th>
+											<th>Research</th>
+											<th>Problem Solving</th>
+											<th>Diagnostic Information</th>
+											<th>Continuous Improvement</th>
+											<th>Reliability</th>
+											<th>Critical Thinking</th>
+											<th>Results Oriented</th>
+											<th>Teamwork</th>
+											<th>Data Analysis</th>
+											<th>Willingness to Learn</th>
+											<th>Communication</th>
+											<th>Decisiveness</th>
+											<th>Problem Analysis</th>
+											<th>Embracing Change</th>
+											<th>Preventative and First Line Reactive Maintenance on Machines</th>
+											<th>Machine Operation</th>
+											<th>Hand Tool Proficiency</th>
+											<th>Goal Orientation</th>
+											<th>Self Awareness</th>
+											<th>Computer Skills</th>
+											<th>Knowledge of Basic Mobile Equipment Inspection</th>
+											<th>Troubleshooting Capabilities</th>
+											<th>Basic Math Skills</th>
+											<th>Basic Preventative Maintenance on Mobile Equipment</th>
+											<th>Payloader Equipment Certification</th>
+											<th>Telescopic Lift Certification</th>
+											<th>Forklift Equipment Certification</th>
+											<th>Loading/Unloading Capability</th>
+											<th>Basic Use of Mobile Equipment Attachments</th>
+											<th>Operate Class 7 & 8 Tractors</th>
+											<th>Ability to Maneuver Trailers on Plant Site</th>
+											<th>Shipping/Receiving Backup</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Can manage own time</td>
+											<td>Can locate and gather basic information</td>
+											<td>Can solve routine problems</td>
+											<td>Can gather basic information</td>
+											<td>Can identify basic issues</td>
+											<td>Can be counted on to meet commitments</td>
+											<td>Can identify simple problems</td>
+											<td>Can complete basic tasks</td>
+											<td>Can effectively work in a team</td>
+											<td>Can collect basic data</td>
+											<td>Open to learning new things</td>
+											<td>Can communicate effectively</td>
+											<td>Can make routine decisions</td>
+											<td>Can understand problems</td>
+											<td>Can cope with changes</td>
+											<td>Can perform routine checks such as lubricating/moving parts/cleaning equipment</td>
+											<td>Basic Machine Operation</td>
+											<td>Knows how to use basic hand tools</td>
+											<td>Can achieve assigned tasks</td>
+											<td>Shows good self-awareness</td>
+											<td>Can use computers for basic tasks</td>
+											<td>Can inspect mobile equipment</td>
+											<td>Can troubleshoot</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						
 					</section> 
 
 				<!-- Two -->
@@ -638,7 +288,7 @@
 								 <section>
 									<span class="icon solid major fa-wrench"></span>
 									<h3>Production Operator: Casting</h3>
-									<p>Operate and monitor casting equipment to produce high-quality aluminum products while ensuring safety, efficiency, and adherence to quality standards.</p>
+									<p>Operate and monitor casting equipment to produce high-quality aluminum products while ensuring safety, efficiency, and adherence to quality and industry standards.</p>
 									<ul class="actions">
 										<li><a href="pages/casting.html" class="button">Casting 1 and 2</a></li>
 									</ul>
@@ -646,7 +296,7 @@
 								<section>
 									<span class="icon major fa-user"></span>
 									<h3>Production Operator: Senior Caster</h3>
-									<p>Lead and oversee casting operations, ensuring high-quality aluminum production, optimizing processes, and mentoring team members while maintaining strict safety and efficiency standards.</p>
+									<p>Lead and oversee casting operations, ensuring high-quality aluminum production, optimizing processes, and mentoring team members while maintaining strict  standards.</p>
 									<ul class="actions">
 										<li><a href="pages/senior_caster.html" class="button">Senior Caster</a></li>
 									</ul>
@@ -662,7 +312,7 @@
 								<section>
 									<span class="icon solid major fa-cog"></span>
 									<h3>Production Operator: Saw</h3>
-									<p>Operate and maintain saw equipment to cut aluminum products to precise specifications, ensuring quality, efficiency, and adherence to safety standards.</p>
+									<p>Operate and maintain saw equipment to cut aluminum products to precise specifications, ensuring quality, efficiency, and adherence to safety and industry standards.</p>
 									<ul class="actions">
 										<li><a href="pages/saw.html" class="button">Saw 1 and 2</a></li>
 									</ul>
@@ -693,9 +343,9 @@
 									</ul>
 								</section> 
 								<section>
-									<span class="icon solid major fab fa-phone"></span>
+									<span class="icon solid major fab fa-business-time"></span>
 									<h3>Leadership Positions</h3>
-									<p>Leadership positions at an aluminum processing company, including Production Team Leads, Department Supervisors, and Department Managers, focus on guiding teams, optimizing processes, and driving safety, quality, and production efficiency while fostering continuous improvement and employee development.</p>
+									<p>Leadership positions focus on guiding teams, optimizing processes, and driving safety, quality, and production efficiency while fostering continuous improvement and employee development.</p>
 									<ul class="actions">
 										<li><a href="pages/leadership.html" class="button">Leads, Supervisors, and Managers</a></li>
 									</ul>
