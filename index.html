@@ -283,212 +283,202 @@
 						<div class="inner">
 							<h2>Specific Positions</h2>
 							<p>Please see the following links for specific position information</p>
-							<canvas id="circleCanvas" width="1075" height="650"></canvas>
+							<canvas id="circleCanvas" width="1075" height="850"></canvas>
 
-    <script>
-        const canvas = document.getElementById('circleCanvas');
-        const ctx = canvas.getContext('2d');
-        const circles = [];
-
-        const names = [
-            "Production Operator\n\nCasting",
-            "Production Operator\n\nCasting II",
-            "Production Operator\n\nCharging",
-            "Production Operator\n\nCharging II",
-            "Production Operator\n\nSaw",
-            "Production Operator\n\nSaw II",
-            "Material Handler\n\nLevel I Unloading",
-            "Material Handler\n\nLevel II Loading",
-            "Material Handler\n\nTipper",
-            "Material Handler\n\nMelter",
-            "Material Handler\n\nFront Office",
-            "Production Operator\n\nSenior Castor",
-            "Production\n\nLead",
-            "Department\n\nSupervisor",
-            "Department\n\nManager",
-			"Mould Shop\n\nTechnician"
-        ];
-
-        const colorGradients = [
-            { start: 'blue', end: 'lightblue' },
-			
-            { start: 'blue', end: 'lightblue' },
-            { start: 'blue', end: 'lightblue' },
-            { start: 'blue', end: 'lightblue' },
-            { start: 'blue', end: 'lightblue' },
-            { start: 'blue', end: 'lightblue' },
-            { start: 'purple', end: 'lavender' },
-            { start: 'purple', end: 'lavender' },
-            { start: 'purple', end: 'lavender' },
-            { start: 'purple', end: 'lavender' },
-            { start: 'purple', end: 'lavender' },
-            { start: 'blue', end: 'lightblue' },
-            { start: '#d5006d', end: 'pink' },
-            { start: '#d5006d', end: 'pink' },
-            { start: '#d5006d', end: 'pink' },
-			{ start: 'blue', end: 'lightblue' }
-        ];
-
-		const urls = [
-			"pages/casting.html#one",
-			"pages/casting.html#two",
-			"pages/charging.html#one",
-			"pages/charging.html#two",
-			"pages/saw.html#one",
-			"pages/saw.html#two",
-			"pages/materialHandling.html#two",
-			"pages/materialHandling.html#one",
-			"pages/materialProcessing.html#two",
-			"pages/materialProcessing.html#one",
-			"pages/front_office.html#one",
-			"pages/senior_caster.html#one",
-			"pages/leadership.html#one",
-			"pages/leadership.html#two",
-			"pages/leadership.html#three",
-			"pages/"
-		]
-
-        class Circle {
-            constructor(x, y, radius, name, colorGradient, outlineColor, url) {
-                this.x = x;
-                this.y = y;
-                this.radius = radius;
-                this.originalRadius = radius;
-                this.targetRadius = radius;
-                this.colorGradient = colorGradient;
-                this.name = name;
-                this.outlineColor = outlineColor; // Set outline color
-				this.url = url;
-            }
-
-            createGradient() {
-                const gradient = ctx.createLinearGradient(this.x - this.radius, this.y, this.x + this.radius, this.y);
-                gradient.addColorStop(0, this.colorGradient.start);
-                gradient.addColorStop(1, this.colorGradient.end);
-                return gradient;
-            }
-
-            draw() {
-                // Draw circle with border
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = this.createGradient();
-                ctx.fill();
-                ctx.lineWidth = 1;
-                ctx.strokeStyle = this.outlineColor; // Use specified outline color
-                ctx.stroke();
-                ctx.closePath();
-
-                // Draw the name in the circle with a white border effect using shadow
-                ctx.fillStyle = 'white';
-                ctx.font = `${(this.radius / 5)}px Arial`; // Font size scales with circle radius
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-
-                const lines = this.name.split('\n');
-                const lineHeight = 12;
-                const totalHeight = (lines.length - 1) * lineHeight;
-
-                lines.forEach((line, index) => {
-                    const textX = this.x;
-                    const textY = this.y - totalHeight / 2 + index * lineHeight;
-
-                    // Set shadow for white border effect
-                    ctx.shadowColor = 'black';
-                    ctx.shadowOffsetX = 1;
-                    ctx.shadowOffsetY = 1;
-                    ctx.shadowBlur = 1;
-                    ctx.fillText(line, textX, textY);
-                    ctx.shadowColor = 'transparent'; // Reset shadow
-                });
-            }
-
-            update() {
-                this.radius += (this.targetRadius - this.radius) * 0.1;
-                this.draw();
-            }
-
-            setHover(hovered) {
-                this.targetRadius = hovered ? 90 : this.originalRadius;
-                this.colorGradient.start = hovered ? this.darkerColor(this.colorGradient.start) : this.colorGradient.start;
-                this.colorGradient.end = hovered ? this.darkerColor(this.colorGradient.end) : this.colorGradient.end;
-            }
-
-			isClicked(mouseX,mouseY) {
-				const dist = Math.hypot(this.x - mouseX, this.y - mouseY);
-				return dist <= this.radius;
-			}
-        }
-
-        function createCircles() {
-            const radius = 80;
-            const cols = 5;
-            const rows = 3;
-            const spacingX = canvas.width / cols;
-            const spacingY = canvas.height / rows;
-
-            for (let row = 0; row < rows; row++) {
-                for (let col = 0; col < cols; col++) {
-                    const x = col * spacingX + spacingX / 2;
-                    const y = row * spacingY + spacingY / 2;
-                    const index = row * cols + col;
-                    const name = names[index];
-                    const colorGradient = colorGradients[index];
-					const url = urls[index];
-
-                    // Determine outline color based on the index
-                    let outlineColor;
-                    if (index < 6) {
-                        outlineColor = 'blue';
-                    } else if (index < 11) {
-                        outlineColor = 'purple';
-                    } else if (index === 11) {
-                        outlineColor = 'blue';
-                    } else {
-                        outlineColor = '#d5006d';
-                    }
-
-                    circles.push(new Circle(x, y, radius, name, colorGradient, outlineColor, url));
-                }
-            }
-        }
-
-        // Create circles in a grid
-        createCircles();
-
-        // Animation loop
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            circles.forEach(circle => circle.update());
-            requestAnimationFrame(animate);
-        }
-
-        // Mouse hover effect
-        canvas.addEventListener('mousemove', (e) => {
-            const rect = canvas.getBoundingClientRect();
-            const mouseX = e.clientX - rect.left;
-            const mouseY = e.clientY - rect.top;
-
-            circles.forEach(circle => {
-                const dist = Math.hypot(circle.x - mouseX, circle.y - mouseY);
-                circle.setHover(dist < circle.targetRadius);
-            });
-        });
-
-		canvas.addEventListener('click', (e) => {
-			const rect = canvas.getBoundingClientRect();
-			const mouseX = e.clientX - rect.left;
-			const mouseY = e.clientY - rect.top;
-
-			circles.forEach(circle => {
-				if (circle.isClicked(mouseX, mouseY)) {
-					window.location.href = circle.url; 
-				}
-			});
-		});
-
-        animate();
-    </script>
+							<script>
+							  const canvas = document.getElementById("circleCanvas");
+							  const ctx = canvas.getContext("2d");
+							  const circles = [];
+						  
+							  const names = [
+								"Production Operator\n\nCasting",
+								"Production Operator\n\nCasting II",
+								"Production Operator\n\nCharging",
+								"Production Operator\n\nCharging II",
+								"Production Operator\n\nSaw",
+								"Production Operator\n\nSaw II",
+								"Material Handler\n\nLevel I Unloading",
+								"Material Handler\n\nLevel II Loading",
+								"Material Handler\n\nTipper",
+								"Material Handler\n\nMelter",
+								"Material Handler\n\nFront Office",
+								"Production Operator\n\nSenior Castor",
+								"Production\n\nLead",
+								"Department\n\nSupervisor",
+								"Department\n\nManager",
+								"Mould Shop\n\nTechnician",
+								"Maintenance\n\nTechnician",
+							  ];
+						  
+							  const colorGradients = [
+								{ start: "blue", end: "lightblue" },
+								{ start: "blue", end: "lightblue" },
+								{ start: "blue", end: "lightblue" },
+								{ start: "blue", end: "lightblue" },
+								{ start: "blue", end: "lightblue" },
+								{ start: "blue", end: "lightblue" },
+								{ start: "purple", end: "lavender" },
+								{ start: "purple", end: "lavender" },
+								{ start: "purple", end: "lavender" },
+								{ start: "purple", end: "lavender" },
+								{ start: "purple", end: "lavender" },
+								{ start: "blue", end: "lightblue" },
+								{ start: "#d5006d", end: "pink" },
+								{ start: "#d5006d", end: "pink" },
+								{ start: "#d5006d", end: "pink" },
+								{ start: "blue", end: "lightblue" },
+								{ start: "blue", end: "lightblue" },
+							  ];
+						  
+							  const urls = [
+								"pages/casting.html#one",
+								"pages/casting.html#two",
+								"pages/charging.html#one",
+								"pages/charging.html#two",
+								"pages/saw.html#one",
+								"pages/saw.html#two",
+								"pages/materialHandling.html#one",
+								"pages/materialHandling.html#two",
+								"pages/materialProcessing.html#one",
+								"pages/materialProcessing.html#two",
+								"pages/front_office.html#one",
+								"pages/senior_caster.html#one",
+								"pages/leadership.html#one",
+								"pages/leadership.html#two",
+								"pages/leadership.html#three",
+								"pages/mould_shop.html#one",
+								"pages/maintenance.html#one",
+							  ];
+						  
+							  class Circle {
+								constructor(x, y, radius, name, colorGradient, outlineColor, url) {
+								  this.x = x;
+								  this.y = y;
+								  this.radius = radius;
+								  this.originalRadius = radius;
+								  this.targetRadius = radius;
+								  this.colorGradient = colorGradient;
+								  this.name = name;
+								  this.outlineColor = outlineColor;
+								  this.url = url;
+								}
+						  
+								createGradient() {
+								  const gradient = ctx.createLinearGradient(
+									this.x - this.radius,
+									this.y,
+									this.x + this.radius,
+									this.y
+								  );
+								  gradient.addColorStop(0, this.colorGradient.start);
+								  gradient.addColorStop(1, this.colorGradient.end);
+								  return gradient;
+								}
+						  
+								draw() {
+								  ctx.beginPath();
+								  ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+								  ctx.fillStyle = this.createGradient();
+								  ctx.fill();
+								  ctx.lineWidth = 1;
+								  ctx.strokeStyle = this.outlineColor;
+								  ctx.stroke();
+								  ctx.closePath();
+						  
+								  ctx.fillStyle = "white";
+								  ctx.font = `${this.radius / 5}px Arial`;
+								  ctx.textAlign = "center";
+								  ctx.textBaseline = "middle";
+						  
+								  const lines = this.name.split("\n");
+								  const lineHeight = 12;
+								  const totalHeight = (lines.length - 1) * lineHeight;
+						  
+								  lines.forEach((line, index) => {
+									const textX = this.x;
+									const textY = this.y - totalHeight / 2 + index * lineHeight;
+									ctx.shadowColor = "black";
+									ctx.shadowOffsetX = 1;
+									ctx.shadowOffsetY = 1;
+									ctx.shadowBlur = 1;
+									ctx.fillText(line, textX, textY);
+									ctx.shadowColor = "transparent";
+								  });
+								}
+						  
+								update() {
+								  this.radius += (this.targetRadius - this.radius) * 0.1;
+								  this.draw();
+								}
+						  
+								setHover(hovered) {
+								  this.targetRadius = hovered ? 90 : this.originalRadius;
+								}
+						  
+								isClicked(mouseX, mouseY) {
+								  const dist = Math.hypot(this.x - mouseX, this.y - mouseY);
+								  return dist <= this.radius;
+								}
+							  }
+						  
+							  function createCircles() {
+								const radius = 80;
+								const cols = 5;
+								const rows = 4;
+								const spacingX = canvas.width / cols;
+								const spacingY = canvas.height / rows;
+						  
+								for (let row = 0; row < rows; row++) {
+								  for (let col = 0; col < cols; col++) {
+									const x = col * spacingX + spacingX / 2;
+									const y = row * spacingY + spacingY / 2;
+									const index = row * cols + col;
+									if (index >= names.length) break;
+						  
+									const name = names[index];
+									const colorGradient = colorGradients[index];
+									const url = urls[index];
+						  
+									let outlineColor = index < 6 || index === 11 || index >= 15 ? "blue" : index < 11 ? "purple" : "#d5006d";
+						  
+									circles.push(new Circle(x, y, radius, name, colorGradient, outlineColor, url));
+								  }
+								}
+							  }
+						  
+							  createCircles();
+						  
+							  function animate() {
+								ctx.clearRect(0, 0, canvas.width, canvas.height);
+								circles.forEach((circle) => circle.update());
+								requestAnimationFrame(animate);
+							  }
+						  
+							  canvas.addEventListener("mousemove", (e) => {
+								const rect = canvas.getBoundingClientRect();
+								const mouseX = e.clientX - rect.left;
+								const mouseY = e.clientY - rect.top;
+						  
+								circles.forEach((circle) => {
+								  const dist = Math.hypot(circle.x - mouseX, circle.y - mouseY);
+								  circle.setHover(dist < circle.targetRadius);
+								});
+							  });
+						  
+							  canvas.addEventListener("click", (e) => {
+								const rect = canvas.getBoundingClientRect();
+								const mouseX = e.clientX - rect.left;
+								const mouseY = e.clientY - rect.top;
+						  
+								circles.forEach((circle) => {
+								  if (circle.isClicked(mouseX, mouseY)) {
+									window.location.href = circle.url;
+								  }
+								});
+							  });
+						  
+							  animate();
+							</script>
 							<p></p>
 							<div class="split style1">
 								
