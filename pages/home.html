@@ -1,0 +1,579 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Hydro Careers</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+		<style>
+			
+	
+			.container {
+				display: flex;
+				overflow-x: auto;
+				max-height: 800px;
+				margin-top: 20px;
+				border-radius: 10px; /* Apply border-radius to the whole container */
+				overflow: hidden; /* Ensure the rounded corners are visible */
+			}
+	
+			.role-column {
+				width: 350px; /* Increased width of the Role column */
+				background-color: #5e42a6;
+				box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+				position: sticky;
+				left: 0;
+				top: 0;
+				z-index: 2;
+				border-top-left-radius: 10px; /* Rounded top-left corner */
+				border-bottom-left-radius: 10px; /* Rounded bottom-left corner */
+				border: 1px solid #5e42a6;
+			}
+	
+			.role-column table {
+				width: 100%;
+				border-collapse: separate;
+				border-spacing: 0;
+				border: 1px solid #5e42a6;
+			}
+	
+			.role-column th {
+				padding: 16px;
+				text-align: center;
+				font-size: 20px; /* Set back to previous size */
+				color: white;
+				background: linear-gradient(135deg, #6a0dad, #d5006f); /* Blueish purple to dark pink gradient */
+				border-radius: 8px;
+				height: 40px; /* Increased height of the header */
+				
+			}
+	
+			.role-column td {
+				padding: 20px 30px 20px 8px; /* Increased padding for larger row height */
+				background-color: #f2f2f2;
+				color: black;
+				border-radius: 8px;
+				text-align: center;
+				vertical-align: middle;
+				height: 40px; /* Increased height of the row */
+				position: relative;
+				font-weight: bold; /* Make the words bold */
+				font-size: 16px; /* Larger font size for the role column text */
+				
+			}
+	
+			.circle-icon {
+				width: 12px;
+				height: 12px;
+				background: linear-gradient(45deg, lightblue, #d5006f); /* Gradient from light blue to pink */
+				border-radius: 50%;
+				border: 1px solid black; /* Smaller black border */
+				position: absolute;
+				right: 12px; /* Moved the circle further to the right */
+				top: 50%;
+				transform: translateY(-50%);
+			}
+	
+			.table-data {
+				flex-grow: 1;
+				overflow-x: auto;
+				background-color: #5e42a6;
+				border-radius: 8px; /* Apply border-radius to the table */
+				
+			}
+	
+			.table-data table {
+				width: 100%;
+				border-collapse: separate;
+				border-spacing: 0;
+				background-color: #5e42a6;
+				box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+				border-radius: 8px; /* Added border-radius here */
+				
+			}
+	
+			.table-data thead th {
+				padding: 16px; /* Match padding for equal height */
+				text-align: center;
+				font-size: 20px; /* Larger font size for table header */
+				color: white;
+				background: linear-gradient(135deg, #6a0dad, #d5006f); /* Blueish purple to dark pink gradient */
+				position: sticky;
+				top: 0;
+				z-index: 1;
+				white-space: nowrap;
+				border-top-left-radius: 8px;
+				border-top-right-radius: 8px;
+				height: 40px; /* Set header height to match role column header */
+				
+			}
+	
+			.table-data thead th:not(:last-child) {
+				border-right: 1px solid black;
+				
+			}
+	
+			.table-data tbody tr {
+				border-bottom: 1px solid #ccc;
+				height: 40px; /* Increased row height */
+			}
+	
+			.table-data tbody tr:nth-child(odd) {
+				background-color: #493382;
+			}
+	
+			.table-data tbody tr:nth-child(even) {
+				background-color: #493382;
+			}
+	
+			th, td {
+				padding: 24px; /* Increased padding for larger font size */
+				text-align: center;
+				font-size: 14px; /* Larger font size for table content */
+				border-radius: 8px;
+				height: 40px; /* Ensure row height matches header height */
+				vertical-align: middle;
+			}
+	
+			.table-data tbody td {
+				border-right: 1px solid black;
+			}
+	
+			.table-data tbody td:last-child {
+				border-right: none;
+			}
+	
+			@media screen and (max-width: 768px) {
+				th, td {
+					font-size: 12px; /* Smaller font size for mobile */
+					padding: 10px;
+					height: auto; /* Adjust height for mobile devices */
+				}
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Sidebar -->
+			<section id="sidebar">
+				<div class="inner">
+					<nav>
+						<ul>
+							<li><a href="#intro">Welcome</a></li>
+							<li><a href="#two">Position Areas</a></li>
+							<li><a href="#three">Specific Positions</a></li>
+							<li><a href="#four">Skill Development</a></li>
+						</ul>
+					</nav>
+				</div>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Intro -->
+					<section id="intro" class="wrapper style1 fullscreen fade-up">
+						<div class="inner">
+							<h1>Welcome</h1>
+							<p>Use the below tool to help identify potential position advancements at Hydro Aluminum and the skills necessary to achieve them.</p>
+							<ul class="actions">
+								<li><a href="#two" class="button scrolly">Learn more</a></li>
+							</ul>
+						</div>
+					</section>
+					
+				
+				<!-- Two -->
+					<section id="two" class="wrapper style1 fade-up">
+						<div class="inner">
+							<h2>Focus Areas</h2>
+							<p>Please see the following pages for additional role information 
+								grouped by position focus
+							</p>
+							
+							<div class="features">
+								
+								
+								 <section>
+									<span class="icon solid major fa-wrench"></span>
+									<h3>Production Operator: Casting</h3>
+									<p>Operate and monitor casting equipment to produce high-quality aluminum products while ensuring safety, efficiency, and adherence to quality and industry standards.</p>
+									<ul class="actions">
+										<li><a href="casting.html" class="button">Casting 1 and 2</a></li>
+									</ul>
+								</section>
+								<section>
+									<span class="icon major fa-user"></span>
+									<h3>Production Operator: Senior Caster</h3>
+									<p>Lead and oversee casting operations, ensuring high-quality aluminum production, optimizing processes, and mentoring team members while maintaining strict  standards.</p>
+									<ul class="actions">
+										<li><a href="senior_caster.html" class="button">Senior Caster</a></li>
+									</ul>
+								</section>
+								<section>
+									<span class="icon solid major fa-bolt"></span>
+									<h3>Production Operator: Charging</h3>
+									<p>Manage and execute the preparation and charging of raw materials into melting furnaces, ensuring efficient aluminum production while adhering to safety and quality protocols.</p>
+									<ul class="actions">
+										<li><a href="charging.html" class="button">Charging 1 and 2</a></li>
+									</ul>
+								</section>
+								<section>
+									<span class="icon solid major fa-cog"></span>
+									<h3>Production Operator: Saw</h3>
+									<p>Operate and maintain saw equipment to cut aluminum products to precise specifications, ensuring quality, efficiency, and adherence to safety and industry standards.</p>
+									<ul class="actions">
+										<li><a href="saw.html" class="button">Saw 1 and 2</a></li>
+									</ul>
+								</section>
+								<section>
+									<span class="icon major fa-gem"></span>
+									<h3>Material Handling</h3>
+									<p>Handle the loading, unloading, and transportation of raw materials and finished aluminum products, ensuring efficient material flow while maintaining safety and quality standards.</p>
+									<ul class="actions">
+										<li><a href="materialHandling.html" class="button">Loading and Unloading</a></li>
+									</ul>
+								</section>
+								
+								<section>
+									<span class="icon solid major fas fa-signal"></span>
+									<h3>Material Processing</h3>
+									<p>Perform and oversee material processing operations, including melting and tipping aluminum, to ensure efficient production, quality standards, and compliance with safety protocols.</p>
+									<ul class="actions">
+										<li><a href="materialProcessing.html" class="button">Tipper and Melter</a></li>
+									</ul>
+								</section>
+								<section>
+									<span class="icon solid major fab fa-phone"></span>
+									<h3>Front Office</h3>
+									<p>Coordinate administrative tasks, customer interactions, and operational support to ensure efficient communication, scheduling, and documentation in a fast-paced aluminum processing environment.</p>
+									<ul class="actions">
+										<li><a href="front_office.html" class="button">Receiving Specialist</a></li>
+									</ul>
+								</section> 
+								<section>
+									<span class="icon solid major fab fa-business-time"></span>
+									<h3>Leadership Positions</h3>
+									<p>Leadership positions focus on guiding teams, optimizing processes, and driving safety, quality, and production efficiency while fostering continuous improvement and employee development.</p>
+									<ul class="actions">
+										<li><a href="leadership.html" class="button">Leadership</a></li>
+									</ul>
+								</section>
+							</div>
+							
+						</div>
+						
+					</section>
+
+				<!-- Three -->
+					<section id="three" class="wrapper style1 fade-up">
+						<div class="inner">
+							<h2>Specific Positions</h2>
+							<p>Please see the following links for specific position information</p>
+							<canvas id="circleCanvas" width="1075" height="850"></canvas>
+
+							<script>
+							  const canvas = document.getElementById("circleCanvas");
+							  const ctx = canvas.getContext("2d");
+							  const circles = [];
+						  
+							  const names = [
+								"Production Operator\n\nCasting",
+								"Production Operator\n\nCasting II",
+								"Production Operator\n\nCharging",
+								"Production Operator\n\nCharging II",
+								"Production Operator\n\nSaw",
+								"Production Operator\n\nSaw II",
+								"Material Handler\n\nLevel I Unloading",
+								"Material Handler\n\nLevel II Loading",
+								"Material Handler\n\nTipper",
+								"Material Handler\n\nMelter",
+								"Material Handler\n\nFront Office",
+								"Production Operator\n\nSenior Castor",
+								"Production\n\nLead",
+								"Department\n\nSupervisor",
+								"Department\n\nManager",
+								"Mould Shop\n\nTechnician",
+								"Maintenance\n\nTechnician",
+							  ];
+						  
+							  const colorGradients = [
+								{ start: "blue", end: "lightblue" },
+								{ start: "blue", end: "lightblue" },
+								{ start: "blue", end: "lightblue" },
+								{ start: "blue", end: "lightblue" },
+								{ start: "blue", end: "lightblue" },
+								{ start: "blue", end: "lightblue" },
+								{ start: "purple", end: "lavender" },
+								{ start: "purple", end: "lavender" },
+								{ start: "purple", end: "lavender" },
+								{ start: "purple", end: "lavender" },
+								{ start: "purple", end: "lavender" },
+								{ start: "blue", end: "lightblue" },
+								{ start: "#d5006d", end: "pink" },
+								{ start: "#d5006d", end: "pink" },
+								{ start: "#d5006d", end: "pink" },
+								{ start: "blue", end: "lightblue" },
+								{ start: "blue", end: "lightblue" },
+							  ];
+						  
+							  const urls = [
+								"casting.html#one",
+								"casting.html#two",
+								"charging.html#one",
+								"charging.html#two",
+								"saw.html#one",
+								"saw.html#two",
+								"materialHandling.html#one",
+								"materialHandling.html#two",
+								"materialProcessing.html#one",
+								"materialProcessing.html#two",
+								"front_office.html#one",
+								"senior_caster.html#one",
+								"leadership.html#one",
+								"leadership.html#two",
+								"leadership.html#three",
+								"technician.html#one",
+								"technician.html#two",
+							  ];
+						  
+							  class Circle {
+								constructor(x, y, radius, name, colorGradient, outlineColor, url) {
+								  this.x = x;
+								  this.y = y;
+								  this.radius = radius;
+								  this.originalRadius = radius;
+								  this.targetRadius = radius;
+								  this.colorGradient = colorGradient;
+								  this.name = name;
+								  this.outlineColor = outlineColor;
+								  this.url = url;
+								}
+						  
+								createGradient() {
+								  const gradient = ctx.createLinearGradient(
+									this.x - this.radius,
+									this.y,
+									this.x + this.radius,
+									this.y
+								  );
+								  gradient.addColorStop(0, this.colorGradient.start);
+								  gradient.addColorStop(1, this.colorGradient.end);
+								  return gradient;
+								}
+						  
+								draw() {
+								  ctx.beginPath();
+								  ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+								  ctx.fillStyle = this.createGradient();
+								  ctx.fill();
+								  ctx.lineWidth = 1;
+								  ctx.strokeStyle = this.outlineColor;
+								  ctx.stroke();
+								  ctx.closePath();
+						  
+								  ctx.fillStyle = "white";
+								  ctx.font = `${this.radius / 5}px Arial`;
+								  ctx.textAlign = "center";
+								  ctx.textBaseline = "middle";
+						  
+								  const lines = this.name.split("\n");
+								  const lineHeight = 12;
+								  const totalHeight = (lines.length - 1) * lineHeight;
+						  
+								  lines.forEach((line, index) => {
+									const textX = this.x;
+									const textY = this.y - totalHeight / 2 + index * lineHeight;
+									ctx.shadowColor = "black";
+									ctx.shadowOffsetX = 1;
+									ctx.shadowOffsetY = 1;
+									ctx.shadowBlur = 1;
+									ctx.fillText(line, textX, textY);
+									ctx.shadowColor = "transparent";
+								  });
+								}
+						  
+								update() {
+								  this.radius += (this.targetRadius - this.radius) * 0.1;
+								  this.draw();
+								}
+						  
+								setHover(hovered) {
+								  this.targetRadius = hovered ? 90 : this.originalRadius;
+								}
+						  
+								isClicked(mouseX, mouseY) {
+								  const dist = Math.hypot(this.x - mouseX, this.y - mouseY);
+								  return dist <= this.radius;
+								}
+							  }
+						  
+							  function createCircles() {
+								const radius = 80;
+								const cols = 5;
+								const rows = 4;
+								const spacingX = canvas.width / cols;
+								const spacingY = canvas.height / rows;
+						  
+								for (let row = 0; row < rows; row++) {
+								  for (let col = 0; col < cols; col++) {
+									const x = col * spacingX + spacingX / 2;
+									const y = row * spacingY + spacingY / 2;
+									const index = row * cols + col;
+									if (index >= names.length) break;
+						  
+									const name = names[index];
+									const colorGradient = colorGradients[index];
+									const url = urls[index];
+						  
+									let outlineColor = index < 6 || index === 11 || index >= 15 ? "blue" : index < 11 ? "purple" : "#d5006d";
+						  
+									circles.push(new Circle(x, y, radius, name, colorGradient, outlineColor, url));
+								  }
+								}
+							  }
+						  
+							  createCircles();
+						  
+							  function animate() {
+								ctx.clearRect(0, 0, canvas.width, canvas.height);
+								circles.forEach((circle) => circle.update());
+								requestAnimationFrame(animate);
+							  }
+						  
+							  canvas.addEventListener("mousemove", (e) => {
+								const rect = canvas.getBoundingClientRect();
+								const mouseX = e.clientX - rect.left;
+								const mouseY = e.clientY - rect.top;
+						  
+								circles.forEach((circle) => {
+								  const dist = Math.hypot(circle.x - mouseX, circle.y - mouseY);
+								  circle.setHover(dist < circle.targetRadius);
+								});
+							  });
+						  
+							  canvas.addEventListener("click", (e) => {
+								const rect = canvas.getBoundingClientRect();
+								const mouseX = e.clientX - rect.left;
+								const mouseY = e.clientY - rect.top;
+						  
+								circles.forEach((circle) => {
+								  if (circle.isClicked(mouseX, mouseY)) {
+									window.location.href = circle.url;
+								  }
+								});
+							  });
+						  
+							  animate();
+							</script>
+							<p></p>
+							<div class="split style1">
+								
+								<!-- <section>
+									<form method="post" action="#">
+										<div class="fields">
+											<div class="field half">
+												<label for="name">Name</label>
+												<input type="text" name="name" id="name" />
+											</div>
+											<div class="field half">
+												<label for="email">Email</label>
+												<input type="text" name="email" id="email" />
+											</div>
+											<div class="field">
+												<label for="message">Message</label>
+												<textarea name="message" id="message" rows="5"></textarea>
+											</div>
+										</div>
+										<ul class="actions">
+											<li><a href="" class="button submit">Send Message</a></li>
+										</ul>
+									</form>
+								</section> -->
+								
+							</div>
+						</div>
+					</section>
+			<section id = "four" class = "wrapper style1 fade-up">
+				<div class = "inner">
+					<h2>Skill Development</h2>
+					<div class="features">
+						<section>
+							<span class="icon solid major fa-cog"></span>
+							<h3>Improving Hourly Skills</h3>
+							<p></p>
+							<ul class="actions">
+								<li><a href="hourly_skills.html" class="button">Hourly Skills</a></li>
+							</ul>
+						</section>
+						<section>
+							<span class="icon major fa-gem"></span>
+							<h3>Improving Leadership Skills</h3>
+							<p></p>
+							<ul class="actions">
+								<li><a href="salary_skills.html" class="button">Leaderships Skills</a></li>
+							</ul>
+						</section>
+							
+
+					</div>
+				</section>
+				<!-- <section>
+					<div class = "inner">
+					<ul class="contact">
+						<li>
+							<h3>Address</h3>
+							<span>2000 Economic Drive<br />
+							Commerce, TX 75428<br />
+							USA</span>
+						</li>
+						<li>
+							<h3>Email</h3>
+							<a href="commerce@hydro.com">commerce@hydro.com</a>
+						</li>
+						<li>
+							<h3>Phone</h3>
+							<span>(903) 468-5000</span>
+						</li>
+						<li>
+							<h3>Social</h3>
+							<ul class="icons">
+								<li><a href="https://x.com/norskhydroasa" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+								<li><a href="https://www.facebook.com/norskhydroasa" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+								<li><a href="https://www.instagram.com/norskhydroasa/?hl=nb" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+								<li><a href="https://www.linkedin.com/company/norsk-hydro/?originalSubdomain=no" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+							</ul>
+						</li>
+					</ul>
+					</div>
+				</section> -->
+			</div>
+			</section>
+			<!-- </div>   -->
+
+		
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Hydro Aluminum Commerce, TX. All rights reserved.</li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/jquery.scrollex.min.js"></script>
+		<script src="../assets/js/jquery.scrolly.min.js"></script>
+		<script src="../assets/js/browser.min.js"></script>
+		<script src="../assets/js/breakpoints.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
+
+	</body>
+</html>
