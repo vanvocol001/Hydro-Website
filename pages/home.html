@@ -107,12 +107,20 @@
 								</section>
 								<section>
 									<span class="icon solid major fab fa-phone"></span>
-									<h3>Front Office</h3>
+									<h3>Logistics Office</h3>
 									<p>Coordinate administrative tasks, customer interactions, and operational support to ensure efficient communication, scheduling, and documentation in a fast-paced aluminum processing environment.</p>
 									<ul class="actions">
-										<li><a href="front_office.html" class="button">Receiving Specialist</a></li>
+										<li><a href="logistics_office.html" class="button">Receiving Specialist</a></li>
 									</ul>
 								</section> 
+								<section>
+									<span class="icon solid major fab fa-hammer"></span>
+									<h3>Technician Positions</h3>
+									<p>Ensure the smooth operation of industrial systems by performing maintenance, troubleshooting, and repair tasks while maintaining a focus on precision, safety, and quality.</p>
+									<ul class="actions">
+										<li><a href="technician.html" class="button">Mould Shop and Maintenance</a></li>
+									</ul>
+								</section>
 								<section>
 									<span class="icon solid major fab fa-business-time"></span>
 									<h3>Leadership Positions</h3>
@@ -120,6 +128,9 @@
 									<ul class="actions">
 										<li><a href="leadership.html" class="button">Leadership</a></li>
 									</ul>
+								</section>
+								<section>
+									
 								</section>
 							</div>
 							
@@ -146,12 +157,12 @@
 								"Production Operator\n\nCharging II",
 								"Production Operator\n\nSaw",
 								"Production Operator\n\nSaw II",
+								"Production Operator\n\nSenior Castor",
 								"Material Handler\n\nLevel I Unloading",
 								"Material Handler\n\nLevel II Loading",
 								"Material Handler\n\nTipper",
 								"Material Handler\n\nMelter",
-								"Material Handler\n\nFront Office",
-								"Production Operator\n\nSenior Castor",
+								"Material Handler\n\Logistics Office",
 								"Production\n\nLead",
 								"Department\n\nSupervisor",
 								"Department\n\nManager",
@@ -160,23 +171,23 @@
 							  ];
 						  
 							  const colorGradients = [
-								{ start: "blue", end: "lightblue" },
-								{ start: "blue", end: "lightblue" },
-								{ start: "blue", end: "lightblue" },
-								{ start: "blue", end: "lightblue" },
-								{ start: "blue", end: "lightblue" },
-								{ start: "blue", end: "lightblue" },
-								{ start: "purple", end: "lavender" },
-								{ start: "purple", end: "lavender" },
-								{ start: "purple", end: "lavender" },
-								{ start: "purple", end: "lavender" },
-								{ start: "purple", end: "lavender" },
-								{ start: "blue", end: "lightblue" },
-								{ start: "#d5006d", end: "pink" },
-								{ start: "#d5006d", end: "pink" },
-								{ start: "#d5006d", end: "pink" },
-								{ start: "blue", end: "lightblue" },
-								{ start: "blue", end: "lightblue" },
+								{ start: "#43807A", end: "white" },
+								{ start: "#43807A", end: "white" },
+								{ start: "#43807A", end: "white" },
+								{ start: "#43807A", end: "white" },
+								{ start: "#43807A", end: "white" },
+								{ start: "#43807A", end: "white" },
+								{ start: "#43807A", end: "white" },
+								{ start: "#4A3041", end: "white" },
+								{ start: "#4A3041", end: "white" },
+								{ start: "#4A3041", end: "white" },
+								{ start: "#4A3041", end: "white" },
+								{ start: "#4A3041", end: "white" },
+								{ start: "#C5B9AC", end: "white" },
+								{ start: "#C5B9AC", end: "white" },
+								{ start: "#C5B9AC", end: "white" },
+								{ start: "#B95946", end: "white" },
+								{ start: "#B95946", end: "white" },
 							  ];
 						  
 							  const urls = [
@@ -186,12 +197,12 @@
 								"charging.html#two",
 								"saw.html#one",
 								"saw.html#two",
+								"senior_caster.html#one",
 								"materialHandling.html#one",
 								"materialHandling.html#two",
 								"materialProcessing.html#one",
 								"materialProcessing.html#two",
-								"front_office.html#one",
-								"senior_caster.html#one",
+								"logistics_office.html#one",
 								"leadership.html#one",
 								"leadership.html#two",
 								"leadership.html#three",
@@ -288,7 +299,7 @@
 									const colorGradient = colorGradients[index];
 									const url = urls[index];
 						  
-									let outlineColor = index < 6 || index === 11 || index >= 15 ? "blue" : index < 11 ? "purple" : "#d5006d";
+									let outlineColor = index < 7 ? "#43807A" : index < 12 ? "#4A3041" : index < 15 ? "#C5B9AC": "#B95946";
 						  
 									circles.push(new Circle(x, y, radius, name, colorGradient, outlineColor, url));
 								  }
